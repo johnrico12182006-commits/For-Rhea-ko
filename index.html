@@ -139,7 +139,7 @@
   "You’re the best part of my life thank you for staying while I’m still learning how to love myself."
 ];
 
-    let step = 0;
+   let step = 0;
 
     function nextStep() {
       const msg = document.getElementById('message');
@@ -149,8 +149,11 @@
       const btn = document.getElementById('btn');
       const bgm = document.getElementById('bgm');
 
-      // Start music on first interaction
+      // Start music on first click (browser-safe)
       if (step === 0) {
+        bgm.currentTime = 0;
+        bgm.muted = false;
+        bgm.volume = 1;
         bgm.play().catch(() => {});
       }
 
@@ -162,19 +165,18 @@
 
       if (step === messages.length) {
         gallery.classList.remove('hidden');
-        msg.textContent = 'Some of my favorite moments with you.';
+        msg.textContent = 'MISS YOU SOBRA.';
         step++;
         return;
       }
 
       if (step === messages.length + 1) {
         heart.classList.remove('hidden');
-        msg.textContent = 'And this heart beats for you.';
+        msg.textContent = 'I love you so much.';
         step++;
         return;
       }
 
-      // Final surprise
       msg.classList.add('hidden');
       btn.classList.add('hidden');
       final.classList.remove('hidden');
@@ -182,3 +184,4 @@
   </script>
 </body>
 </html>
+
