@@ -3,161 +3,249 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For You ❤️</title>
+<title>For Rhea ❤️ — From John Rico</title>
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #fff 0%, #ffe6ec 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
 
-/* Envelope container */
-.envelope-container {
-  position: relative;
-  width: 300px;
-  cursor: pointer;
-}
+  .card {
+    background: white;
+    padding: 40px;
+    border-radius: 26px;
+    width: 100%;
+    max-width: 620px;
+    min-height: 520px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    position: relative;
+  }
 
-/* Envelope box */
-.envelope {
-  width: 100%;
-  height: 200px;
-  background: #e75480;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
+  h1 {
+    color: #e75480;
+    margin-bottom: 12px;
+    font-size: 32px;
+  }
 
-/* Flap */
-.flap {
-  width: 100%;
-  height: 100%;
-  background: #f7a4b7;
-  clip-path: polygon(0 0, 100% 0, 50% 70%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: top;
-  transition: 0.8s ease;
-}
+  p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 16px 0;
+  }
 
-/* Open flap */
-.envelope-container.open .flap {
-  transform: rotateX(180deg);
-}
+  .names {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 18px;
+  }
 
-/* Card inside envelope */
-.card {
-  position: absolute;
-  top: 140px;
-  left: 50%;
-  transform: translateX(-50%) translateY(50px);
-  opacity: 0;
-  transition: all 1s ease;
-}
+  button {
+    margin-top: 24px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #e75480;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
 
-/* Card visible when envelope opens */
-.envelope-container.open .card {
-  transform: translateX(-50%) translateY(-20px);
-  opacity: 1;
-}
+  button:hover {
+    background: #d64570;
+    transform: scale(1.06);
+  }
 
-h1 { color: #e75480; margin-bottom: 10px; }
+  .hidden { display: none; }
 
-p { font-size: 16px; line-height: 1.6; }
+  .heart {
+    font-size: 52px;
+    margin-top: 20px;
+    animation: beat 1s infinite;
+  }
 
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 30px;
-  background: #e75480;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
-}
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
 
-button:hover {
-  background: #d64570;
-  transform: scale(1.05);
-}
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+  }
 
-.hidden { display: none; }
+  .gallery img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
 
-.heart {
-  font-size: 40px;
-  margin-top: 15px;
-  animation: beat 1s infinite;
-}
+  .footer {
+    font-size: 13px;
+    color: #999;
+    margin-top: 18px;
+  }
 
-@keyframes beat {
-0%, 100% { transform: scale(1); }
-50% { transform: scale(1.2); }
-}
+  /* Envelope Styles */
+  .envelope-container {
+    width: 120px;
+    height: 80px;
+    margin: 20px auto;
+    perspective: 1000px;
+  }
 
-/* Images in your original card */
-.card img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 10px;
-}
+  .envelope {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    cursor: pointer;
+  }
+
+  .envelope.open {
+    transform: rotateX(-180deg);
+  }
+
+  .envelope-front, .envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    backface-visibility: hidden;
+  }
+
+  .envelope-front {
+    background: #e75480;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  .envelope-back {
+    background: #fff;
+    transform: rotateX(180deg);
+    border: 2px solid #e75480;
+  }
+
 </style>
 </head>
 <body>
+<div class="card">
+  <h1>Hi Rhea ❤️</h1>
+  <div class="names">From John Rico</div>
 
-<div class="envelope-container" onclick="openEnvelope()">
-  <div class="envelope">
-    <div class="flap"></div>
+  <p id="message">I know this is simple, I still hope you like it.</p>
+
+  <div id="gallery" class="gallery hidden">
+    <img src="photo1.jpg" alt="Us 1" />
+    <img src="photo2.jpg" alt="Us 2" />
+    <img src="photo3.jpg" alt="Us 3" />
   </div>
 
-  <!-- YOUR ORIGINAL CARD GOES HERE -->
-  <div class="card">
-    <h1>Hi Love ❤️</h1>
-    <!-- Keep your photos here if you have them -->
-    <img src="photos1.jpg" alt="Photo 1">
-    <img src="photos2.jpg" alt="Photo 2">
-    <p id="message">This is a small website, but it carries a big thank you.</p>
-    <button onclick="nextMessage(event)">Click me</button>
-    <div id="heart" class="heart hidden">💖</div>
+  <div class="envelope-container hidden" id="envelopeContainer">
+    <div class="envelope" id="envelope">
+      <div class="envelope-front">💌 Tap me!</div>
+      <div class="envelope-back"></div>
+    </div>
   </div>
+
+  <button id="btn" onclick="nextStep()">Tap to continue</button>
+
+  <div id="heart" class="heart hidden">💖</div>
+  <div id="final" class="hidden">
+    <p><strong>✨Happy New Year Mahal ko ✨</strong></p>
+    <p>Thank you for choosing me, even on days I didn’t choose myself.</p>
+    <p>I promise to keep trying, keep learning, and keep loving you better.</p>
+    <p><strong>I love you, Rhea.</strong></p>
+  </div>
+
+  <div class="footer">I love you Rhea</div>
 </div>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg" />
+</audio>
 
 <script>
 const messages = [
   "Thank you for staying with me throughout 2025.",
-  "Even when I lacked so many things in our relationship.",
-  "You still chose me, understood me, and loved me.",
-  "This is my simple way of saying…",
-  "I appreciate you more than words can say."
+  "I know na marami akong mga pagkukulang, mga pangakong di natupad, at paulit ulit kang nasasaktan",
+  "Still, you stayed patient, kind, and understanding, hindi moko iniwan, andyan ka palagi sa tabi ko, You never failed to show me to be loved by someone.",
+  "I hope yan din naparamdam ko sayo, Mahal na mahal kita sobra Rhea and di ko na ko maisip kung wala ka sa buhay ko, This 2025 is for me the year I became more inconsistent to you",
+  "Pero I still did my best to give you everything, kaya I hope sana na feel mo na mahal na mahal talaga kita.",
+  "If itong taon na to is kulang pa I promise na I will be even better next year and years after that kasi I know na hanggang dulo ikaw pa din ang gusto kong makasama",
+  "You’re the best part of my life thank you for staying while I’m still learning how to love myself."
 ];
 
-let index = 0;
+let step = 0;
 
-function openEnvelope(){
-  document.querySelector(".envelope-container").classList.add("open");
-}
+function nextStep() {
+  const msg = document.getElementById('message');
+  const heart = document.getElementById('heart');
+  const gallery = document.getElementById('gallery');
+  const final = document.getElementById('final');
+  const btn = document.getElementById('btn');
+  const bgm = document.getElementById('bgm');
+  const envelopeContainer = document.getElementById('envelopeContainer');
+  const envelope = document.getElementById('envelope');
 
-// Keep button click only for messages
-function nextMessage(event){
-  event.stopPropagation(); // Prevent flap from toggling
-  const messageEl = document.getElementById("message");
-  const heartEl = document.getElementById("heart");
+  // Start music on first click
+  if (step === 0) {
+    bgm.currentTime = 0;
+    bgm.muted = false;
+    bgm.volume = 1;
+    bgm.play().catch(() => {});
+  }
 
-  if(index < messages.length){
-    messageEl.textContent = messages[index];
-    index++;
-  } else {
-    heartEl.classList.remove("hidden");
+  if (step < messages.length) {
+    msg.textContent = messages[step];
+    step++;
+    return;
+  }
+
+  if (step === messages.length) {
+    gallery.classList.remove('hidden');
+    msg.textContent = 'MISS YOU SOBRA.';
+    step++;
+    return;
+  }
+
+  if (step === messages.length + 1) {
+    heart.classList.remove('hidden');
+    msg.textContent = 'More years to us together :)).';
+    step++;
+    return;
+  }
+
+  if (step === messages.length + 2) {
+    btn.classList.add('hidden');
+    msg.classList.add('hidden');
+    envelopeContainer.classList.remove('hidden');
+    envelope.onclick = () => {
+      envelope.classList.add('open');
+      setTimeout(() => {
+        envelopeContainer.classList.add('hidden');
+        final.classList.remove('hidden');
+      }, 1000);
+    };
+    step++;
+    return;
   }
 }
 </script>
-
 </body>
 </html>
