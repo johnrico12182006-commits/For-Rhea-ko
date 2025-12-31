@@ -1,147 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Rhea ❤️ — From John Rico</title>
- <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
   body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #fff 0%, #ffe6ec 100%);
-    color: #333;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    overflow: hidden;
+    position: relative;
   }
 
+  /* Floating sparkles */
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sparkle 3s linear infinite;
+  }
+
+  @keyframes sparkle {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-200px); opacity: 0; }
+  }
+
+  /* Falling hearts */
+  .heartFall {
+    position: absolute;
+    top: -20px;
+    font-size: 25px;
+    animation: fall 4s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes fall {
+    from { transform: translateY(0); }
+    to { transform: translateY(110vh); }
+  }
+
+  /* Envelope Container */
+  .envelope-container {
+    position: relative;
+    width: 300px;
+    cursor: pointer;
+  }
+
+  .envelope {
+    width: 100%;
+    height: 200px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  }
+
+  .flap {
+    width: 100%;
+    height: 100%;
+    background: #e75480;
+    clip-path: polygon(0 0, 100% 0, 50% 70%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top;
+    transition: 0.8s ease;
+  }
+
+  .open .flap {
+    transform: rotateX(180deg);
+  }
+
+  /* Card slide up */
   .card {
     background: white;
-    padding: 40px;
-    border-radius: 26px;
-    width: 100%;
-    max-width: 620px;      /* BIGGER */
-    min-height: 520px;     /* TALLER */
+    width: 260px;
+    padding: 20px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: 1s ease;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
   }
 
-  h1 {
-    color: #e75480;
-    margin-bottom: 12px;
-    font-size: 32px;
+  .open .card {
+    top: -40px;
+    opacity: 1;
   }
 
-  p {
-    font-size: 18px;       /* bigger text */
-    line-height: 1.7;
-    margin: 16px 0;
-  }
-
-  .names {
-    font-size: 15px;
-    color: #777;
-    margin-bottom: 18px;
-  }
-
+  h1 { color: #e75480; margin-bottom: 10px; }
   button {
-    margin-top: 24px;
-    padding: 14px 28px;
+    margin-top: 15px;
+    padding: 10px 18px;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     background: #e75480;
     color: white;
-    font-size: 17px;
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
+    transition: .2s;
   }
-
-  button:hover {
-    background: #d64570;
-    transform: scale(1.06);
-  }
-
-  .hidden { display: none; }
+  button:hover { transform: scale(1.08); background: #d64570; }
 
   .heart {
-    font-size: 52px;
-    margin-top: 20px;
+    font-size: 40px;
     animation: beat 1s infinite;
+    margin-top: 15px;
+    display: none;
   }
 
   @keyframes beat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.25); }
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 18px;
-  }
-
-  .gallery img {
-    width: 100%;
-    height: 120px; /* bigger photos */
-    object-fit: cover;
-    border-radius: 14px;
-  }
-
-  .footer {
-    font-size: 13px;
-    color: #999;
-    margin-top: 18px;
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
   }
 </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Hi Rhea ❤️</h1>
-    <div class="names">From John Rico</div>
 
-    <p id="message">I know this is simple, I still hope you like it.</p>
+<!-- Background Music -->
+<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/03/15/audio_4d54f44fa5.mp3"></audio>
 
-    <div id="gallery" class="gallery hidden">
-      <!-- Replace these image filenames with your real photos -->
-      <img src="photo1.jpg" alt="Us 1" />
-      <img src="photo2.jpg" alt="Us 2" />
-      <img src="photo3.jpg" alt="Us 3" />
-    </div>
+<!-- Falling Hearts + Sparkles -->
+<div id="effects"></div>
 
-    <button id="btn" onclick="nextStep()">Tap to continue</button>
+<!-- Envelope -->
+<div class="envelope-container" onclick="openEnvelope()">
+  <div class="envelope"><div class="flap"></div></div>
 
-    <div id="heart" class="heart hidden">💖</div>
-    <div id="final" class="hidden">
-      <p><strong>✨Happy New Year Mahal ko ✨</strong></p>
-      <p>Thank you for choosing me, even on days I didn’t choose myself.</p>
-      <p>I promise to keep trying, keep learning, and keep loving you better.</p>
-      <p><strong>I love you, Rhea.</strong></p>
-    </div>
-
-    <div class="footer">I love you Rhea</div>
+  <div class="card" id="card">
+    <h1>Hi Love ❤️</h1>
+    <p id="message">Click next to begin...</p>
+    <button onclick="nextMessage(event)">Next</button>
+    <div id="finalHeart" class="heart">💖</div>
   </div>
+</div>
 
-  <!-- Background music (plays after first click due to browser rules) -->
-  <audio id="bgm" loop>
-    <!-- Replace with your song file name, e.g., music.mp3 -->
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
+<script>
+/* Envelope Action + Music + Confetti */
+function openEnvelope(){
+  document.querySelector(".envelope-container").classList.add("open");
 
-  <script>
-    const messages = [
+  // play music
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.5;
+  music.play();
+
+  // confetti
+  for(let i=0;i<80;i++){
+    let conf = document.createElement("div");
+    conf.textContent = "🎉";
+    conf.style.position="absolute";
+    conf.style.left=Math.random()*100+"vw";
+    conf.style.top=Math.random()*100+"vh";
+    conf.style.fontSize="18px";
+    conf.style.animation=`fall ${3+Math.random()*2}s linear infinite`;
+    document.body.appendChild(conf);
+  }
+
+  // falling hearts + sparkles
+  createEffects();
+}
+
+// Text Typing Effect
+const messages = [
   "Thank you for staying with me throughout 2025.",
-  "I know na marami akong mga pagkukulang, mga pangakong di natupad, at paulit ulit kang nasasaktan",
-  "Still, you stayed patient, kind, and understanding, hindi moko iniwan, andyan ka palagi sa tabi ko, You never failed to show me to be loved by someone.",
-  "I hope yan din naparamdam ko sayo, Mahal na mahal kita sobra Rhea and di ko na ko maisip kung wala ka sa buhay ko, This 2025 is for me the year I became more inconsistent to you",
-  "Pero I still did my best to give you everything, kaya I hope sana na feel mo na mahal na mahal talaga kita.",
-  "If itong taon na to is kulang pa I promise na I will be even better next year and years after that kasi I know na hanggang dulo ikaw pa din ang gusto kong makasama",
-  "You’re the best part of my life thank you for staying while I’m still learning how to love myself."
+  "Even when I failed or lacked things, you still chose me.",
+  "You understood, forgave, stayed, and loved me.",
+  "And that's something I'm truly grateful for.",
+  "I appreciate you more than words could ever say. 💗"
 ];
 
-   let step = 0;
+let index = 0;
+function nextMessage(e){
+  e.stopPropagation();
+  const msg = document.getElementById("message");
+  const finalHeart = document.getElementById("finalHeart");
+
+  if(index < messages.length){
+    typeWriter(messages[index], msg);
+    index++;
+  } else {
+    finalHeart.style.display = "block";
+  }
+}
+
+function typeWriter(text, element){
+  element.textContent = "";
+  let i = 0;
+  let speed = 40;
+  let typing = setInterval(()=>{
+    element.textContent += text[i];
+    i++;
+    if(i === text.length) clearInterval(typing);
+  }, speed);
+}
+
+// Hearts + Sparkles generator
+function createEffects(){
+  const effects = document.getElementById("effects");
+  setInterval(()=>{
+    let h = document.createElement("div");
+    h.textContent="💗";
+    h.className="heartFall";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*2)+"s";
+    effects.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  },300);
+
+  setInterval(()=>{
+    let s = document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    effects.appendChild(s);
+    setTimeout(()=>s.remove(),3000);
+  },200);
+}
+</script>
+
+</body>
+</html>   let step = 0;
 
     function nextStep() {
       const msg = document.getElementById('message');
@@ -186,6 +278,7 @@
   </script>
 </body>
 </html>
+
 
 
 
