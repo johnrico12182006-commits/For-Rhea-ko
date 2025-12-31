@@ -1,127 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For Rhea ❤️ — From John Rico</title>
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #fff 0%, #ffe6ec 100%);
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Rhea ❤️ — From John Rico</title>
+ <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #fff 0%, #ffe6ec 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
 
-.card {
-  background: white;
-  padding: 40px;
-  border-radius: 26px;
-  width: 100%;
-  max-width: 620px;
-  min-height: 520px;
-  text-align: center;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-  position: relative;
-}
+  .card {
+    background: white;
+    padding: 40px;
+    border-radius: 26px;
+    width: 100%;
+    max-width: 620px;      /* BIGGER */
+    min-height: 520px;     /* TALLER */
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+  }
 
-h1 { color: #e75480; margin-bottom: 12px; font-size: 32px; }
-p { font-size: 18px; line-height: 1.7; margin: 16px 0; }
-.names { font-size: 15px; color: #777; margin-bottom: 18px; }
-button {
-  margin-top: 24px;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 30px;
-  background: #e75480;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
-}
-button:hover { background: #d64570; transform: scale(1.06); }
-.hidden { display: none; }
+  h1 {
+    color: #e75480;
+    margin-bottom: 12px;
+    font-size: 32px;
+  }
 
-.heart { font-size: 52px; margin-top: 20px; animation: beat 1s infinite; }
-@keyframes beat { 0%,100%{transform:scale(1);}50%{transform:scale(1.25);} }
+  p {
+    font-size: 18px;       /* bigger text */
+    line-height: 1.7;
+    margin: 16px 0;
+  }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-  margin-top: 18px;
-}
-.gallery img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 14px;
-}
+  .names {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 18px;
+  }
 
-.footer { font-size: 13px; color: #999; margin-top: 18px; }
+  button {
+    margin-top: 24px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #e75480;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
 
-/* Envelope Styles */
-.envelope-container { width: 150px; height: 100px; margin: 20px auto; position: relative; }
-.envelope { width: 100%; height: 100%; position: relative; cursor: pointer; }
-.flap {
-  position: absolute; top: 0; width: 100%; height: 50%;
-  background: #e75480; border-top-left-radius:8px;border-top-right-radius:8px;
-  transform-origin: top center; transition: transform 0.8s ease; z-index:2;
-}
-.envelope-body {
-  position: absolute; bottom:0; width:100%; height:60%;
-  background:#fff; border:2px solid #e75480; border-radius:8px; overflow:hidden; z-index:1;
-}
-.letter {
-  position: absolute; top:-100%; width:100%; height:100%;
-  background:#fff; border:1px solid #e75480; border-radius:6px;
-  padding:10px; box-sizing:border-box; transition: top 1s ease;
-}
-.envelope.open .flap { transform: rotateX(-180deg); }
-.envelope.open + .letter { top:0; } /* show letter after flap */
+  button:hover {
+    background: #d64570;
+    transform: scale(1.06);
+  }
+
+  .hidden { display: none; }
+
+  .heart {
+    font-size: 52px;
+    margin-top: 20px;
+    animation: beat 1s infinite;
+  }
+
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: 120px; /* bigger photos */
+    object-fit: cover;
+    border-radius: 14px;
+  }
+
+  .footer {
+    font-size: 13px;
+    color: #999;
+    margin-top: 18px;
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <h1>Hi Rhea ❤️</h1>
-  <div class="names">From John Rico</div>
+  <div class="card">
+    <h1>Hi Rhea ❤️</h1>
+    <div class="names">From John Rico</div>
 
-  <p id="message">I know this is simple, I still hope you like it.</p>
+    <p id="message">I know this is simple, I still hope you like it.</p>
 
-  <div id="gallery" class="gallery hidden">
-    <img src="photo1.jpg" alt="Us 1" />
-    <img src="photo2.jpg" alt="Us 2" />
-    <img src="photo3.jpg" alt="Us 3" />
-  </div>
-
-  <div class="envelope-container hidden" id="envelopeContainer">
-    <div class="envelope" id="envelope">
-      <div class="flap"></div>
-      <div class="envelope-body"></div>
+    <div id="gallery" class="gallery hidden">
+      <!-- Replace these image filenames with your real photos -->
+      <img src="photo1.jpg" alt="Us 1" />
+      <img src="photo2.jpg" alt="Us 2" />
+      <img src="photo3.jpg" alt="Us 3" />
     </div>
-    <div class="letter hidden" id="letter">
+
+    <button id="btn" onclick="nextStep()">Tap to continue</button>
+
+    <div id="heart" class="heart hidden">💖</div>
+    <div id="final" class="hidden">
       <p><strong>✨Happy New Year Mahal ko ✨</strong></p>
       <p>Thank you for choosing me, even on days I didn’t choose myself.</p>
       <p>I promise to keep trying, keep learning, and keep loving you better.</p>
       <p><strong>I love you, Rhea.</strong></p>
     </div>
+
+    <div class="footer">I love you Rhea</div>
   </div>
 
-  <button id="btn" onclick="nextStep()">Tap to continue</button>
-  <div id="heart" class="heart hidden">💖</div>
-  <div class="footer">I love you Rhea</div>
-</div>
+  <!-- Background music (plays after first click due to browser rules) -->
+  <audio id="bgm" loop>
+    <!-- Replace with your song file name, e.g., music.mp3 -->
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
 
-<audio id="bgm" loop>
-  <source src="music.mp3" type="audio/mpeg" />
-</audio>
-
-<script>
-const messages = [
+  <script>
+    const messages = [
   "Thank you for staying with me throughout 2025.",
   "I know na marami akong mga pagkukulang, mga pangakong di natupad, at paulit ulit kang nasasaktan",
   "Still, you stayed patient, kind, and understanding, hindi moko iniwan, andyan ka palagi sa tabi ko, You never failed to show me to be loved by someone.",
@@ -131,45 +141,52 @@ const messages = [
   "You’re the best part of my life thank you for staying while I’m still learning how to love myself."
 ];
 
-let step = 0;
+   let step = 0;
 
-function nextStep() {
-  const msg = document.getElementById('message');
-  const heart = document.getElementById('heart');
-  const gallery = document.getElementById('gallery');
-  const btn = document.getElementById('btn');
-  const bgm = document.getElementById('bgm');
-  const envelopeContainer = document.getElementById('envelopeContainer');
-  const envelope = document.getElementById('envelope');
-  const letter = document.getElementById('letter');
+    function nextStep() {
+      const msg = document.getElementById('message');
+      const heart = document.getElementById('heart');
+      const gallery = document.getElementById('gallery');
+      const final = document.getElementById('final');
+      const btn = document.getElementById('btn');
+      const bgm = document.getElementById('bgm');
 
-  if (step === 0) { // start music
-    bgm.currentTime = 0; bgm.muted=false; bgm.volume=1; bgm.play().catch(()=>{});
-  }
+      // Start music on first click (browser-safe)
+      if (step === 0) {
+        bgm.currentTime = 0;
+        bgm.muted = false;
+        bgm.volume = 1;
+        bgm.play().catch(() => {});
+      }
 
-  if (step < messages.length) {
-    msg.textContent = messages[step];
-    step++; return;
-  }
+      if (step < messages.length) {
+        msg.textContent = messages[step];
+        step++;
+        return;
+      }
 
-  if (step === messages.length) {
-    gallery.classList.remove('hidden'); msg.textContent = 'MISS YOU SOBRA.'; step++; return;
-  }
+      if (step === messages.length) {
+        gallery.classList.remove('hidden');
+        msg.textContent = 'MISS YOU SOBRA.';
+        step++;
+        return;
+      }
 
-  if (step === messages.length +1) {
-    heart.classList.remove('hidden'); msg.textContent = 'More years to us together :)).'; step++; return;
-  }
+      if (step === messages.length + 1) {
+        heart.classList.remove('hidden');
+        msg.textContent = 'More years to us together :)).';
+        step++;
+        return;
+      }
 
-  if (step === messages.length +2) {
-    btn.classList.add('hidden'); msg.classList.add('hidden');
-    envelopeContainer.classList.remove('hidden');
-    envelope.onclick = () => {
-      envelope.classList.add('open');
-      setTimeout(() => { letter.classList.remove('hidden'); }, 800);
-    };
-    step++; return;
-  }
-}
-</script>
+      msg.classList.add('hidden');
+      btn.classList.add('hidden');
+      final.classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
+
+
+
+
